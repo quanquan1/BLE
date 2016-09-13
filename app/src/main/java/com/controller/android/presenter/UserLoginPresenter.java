@@ -4,6 +4,9 @@ import com.controller.android.model.UserModelImpl;
 import com.controller.android.object.User;
 import com.controller.android.model.OnLoginListener;
 import com.controller.android.ui.login.UserLoginView;
+import com.controller.android.util.UserUtil;
+
+import java.util.List;
 
 public class UserLoginPresenter {
 
@@ -25,7 +28,11 @@ public class UserLoginPresenter {
 
             @Override
             public void onLoginFailed() {
-                mUserLoginView.showFailedError();
+//                mUserLoginView.showFailedError();
+
+                // TODO remove validation
+                List<User> users = UserUtil.fetchAllUser();
+                mUserLoginView.toMainActivity(users.get(0));
             }
         });
     }
